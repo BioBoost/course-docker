@@ -21,15 +21,3 @@
 ### Building Images
 
 * [Building Images](05_building_images/readme.md)
-
-----
-
-### Old
-
-* [Hello World app in PHP](hello-world-app-in-php.md)
-* [Dockerfile](dockerfile.md)
-* [Building containers](building-containers.md)
-* [Volumes](volumes.md)
-* [Inspecting containers](inspecting-containers.md)
-* [Docker Compose](docker-compose-1.md)
-* [Contac Us](contac-us.md)
