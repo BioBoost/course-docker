@@ -10,7 +10,13 @@
 
 * [Containers](02_containers/readme.md)
 
+### Installing Docker
+
+* [Installing Docker](03_installing_docker/readme.md)
+
 ----
+
+### Old
 
 * [Hello World app in PHP](hello-world-app-in-php.md)
 * [Dockerfile](dockerfile.md)
