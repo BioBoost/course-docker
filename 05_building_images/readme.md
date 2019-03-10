@@ -127,7 +127,7 @@ COPY . .
 
 The source is the current directory `.` and the destination is the current directory `.` inside the image. This is the `WORKDIR`.
 
-There are however some caveats here. Certain files and directtories don't need to be added to our image. Some examples are the `.git` directory and the `node_modules` directory (this one needs to be downloaded using the `npm install` command instead).
+There are however some caveats here. Certain files and directories don't need to be added to our image. Some examples are the `.git` directory and the `node_modules` directory (this one needs to be downloaded using the `npm install` command instead).
 
 To make this process easier, docker supports a `.dockerignore` file which can be added to the project. The files and directories listed in this file are ignore for certain instructions.
 
@@ -143,7 +143,7 @@ Dockerfile
 
 ### RUN
 
-The `RUN` instruction allows us to execute instructions in a shell. This is for example used to install applications, libraries or other dependencies. Each `RUN `instruction will execute any commands in a new layer on top of the current image and commit the results
+The `RUN` instruction allows us to execute instructions in a shell. This is for example used to install applications, libraries or other dependencies. Each `RUN` instruction will execute any commands in a new layer on top of the current image and commit the results
 
 So the `RUN` instruction can be used to instruct `npm` to install or dependencies.
 
@@ -165,7 +165,7 @@ EXPOSE 3000
 
 If a protocol different from TCP is used, you can specify the protocol following the format `EXPOSE <port>/<udp,tcp>`. If no protocol is specified, than it **defaults to tcp**.
 
-Do note that the `EXPOSE `instruction does not actually publish the port - this needs to be done when running the container.
+Do note that the `EXPOSE` instruction does not actually publish the port - this needs to be done when running the container.
 
 ### CMD
 
@@ -180,7 +180,7 @@ Note that the `CMD` instruction requires all arguments to be listed separately.
 
 ## Building the image
 
-The `Dockerfile `only describes how an image is created. The next step is to build the image. Building the image will execute the commands in the `Dockerfile`.  Building the image needs to be done with the `docker build` command in the terminal.
+The `Dockerfile` only describes how an image is created. The next step is to build the image. Building the image will execute the commands in the `Dockerfile`.  Building the image needs to be done with the `docker build` command in the terminal.
 
 The docker build command needs some extra information to be able to build the image correctly.
 
