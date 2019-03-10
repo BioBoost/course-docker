@@ -118,7 +118,7 @@ We also need to open the port on which the WordPress is listening to the outside
 
 > **WARNING** - **Link**
 >
-> The WordPress setup instructions on Docker Hub instruct you to use the `link` option to link both containers using the command `docker run --name some-wordpress --link some-mysql:mysql -d wordpress` However this option is becoming depricated in favor of user-defined networks and docker-compose setups.
+> The WordPress setup instructions on Docker Hub instruct you to use the `link` option to link both containers using the command `docker run --name some-wordpress --link some-mysql:mysql -d wordpress`. However this option is becoming deprecated in favor of user-defined networks and docker-compose setups.
 
 ### Surfing to the WordPress site
 
