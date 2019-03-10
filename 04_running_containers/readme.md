@@ -201,3 +201,19 @@ g++ main.cpp -o hello && ./hello
 ```
 
 While this is not a very useful example, you can see that this can easily be used to automated the build process of larger applications, without the need to install all the necessary tools and compilers. Later on we will see how to do exactly this.
+
+## Stopping Containers
+
+Stopping containers can be done with the following command:
+
+```shell
+docker stop <container_id/name>
+```
+
+## Removing Containers
+
+Containers can be removed by issueing the command
+
+```shell
+docker rm <container_name|ID>
+```
