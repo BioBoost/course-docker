@@ -14,6 +14,10 @@
 
 * [Installing Docker](03_installing_docker/readme.md)
 
+### Running Containers
+
+* [Running Containers](04_running_containers/readme.md)
+
 ----
 
 ### Old
@@ -21,7 +25,6 @@
 * [Hello World app in PHP](hello-world-app-in-php.md)
 * [Dockerfile](dockerfile.md)
 * [Building containers](building-containers.md)
-* [Running containers](running-containers.md)
 * [Volumes](volumes.md)
 * [Inspecting containers](inspecting-containers.md)
 * [Docker Hub](docker-hub-1.md)
