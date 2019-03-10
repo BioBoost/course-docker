@@ -75,6 +75,11 @@ For more examples and ideas, visit:
 
 Note how the `hello-world` image was actually pulled from the organization `arm32v7`, which hosts a number of docker images for the ARM architecture compatible with the Raspberry Pi 2. If you are using a Raspberry Pi 3, the image should be pulled from the `arm64v8` organization, since the Cortex-A53 is v8 with a 64-bit instruction set.
 
+More info about Docker on the Raspberry Pi can be found at:
+
+* [https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/](https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/)
+* [https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/](https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/)
+
 ## Installing Docker on Windows
 
 Docker uses Linux-specific kernel features and therefore does not run natively on Windows. Docker Toolbox solves this by providing a command line interface to the docker engine running on a virtual machine equipped with a Linux kernel.
