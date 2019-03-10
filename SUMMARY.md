@@ -2,10 +2,12 @@
 
 * [About this Course](README.md)
 
+### Introduction to Docker
+
+* [Introduction to Docker](01_introduction/readme.md)
+
 ----
 
-* [Docker Introduction](README.md)
-* [What is Docker?](what-is-docker.md)
 * [Containers](containers.md)
 * [Installation](installation.md)
 * [Hello World app in PHP](hello-world-app-in-php.md)
