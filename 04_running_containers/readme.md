@@ -8,6 +8,10 @@ To run the well-known `hello-world` image, we can use the following command.
 docker run hello-world:latest
 ```
 
+> **HINT** - **Container Name**
+>
+> Note that docker will give all its containers a random name. It is possible to assign a custom name to a container by providing the `--name` flag with the `docker run` command.
+
 Here `hello-world` is the name of the image and `latest` is the version tag, which allows you to pick a specific version to run a container from.
 
 This will pull the latest image from Docker Hub and spawn a container from it. The container will execute the binary which generates the output. This output is then redirected via the Docker client to your current terminal.
@@ -153,3 +157,47 @@ docker exec -it my-wordpress bash
 ```
 
 The `exec` option allows us to run commands against already running containers. `-t` allocates a virtual terminal session within the container, so you can type stuff from your keyboard into the container process. This is commonly used with the option `-i`, which keeps STDIN open even if running in detached mode, because standard only STDOUT and STDERR are kept open.
+
+## Running an Interactive Container
+
+Some containers don't spawn daemons but spawn a shell by default. These can be used as a interactive system to work with, or as a base for new custom images. A popular base image is Alpine Linux.
+
+Alpine Linux is a Linux distribution built around *musl libc* and *BusyBox*. The image is only 5 MB in size and has access to a package repository that is much more complete than other BusyBox based images. This makes Alpine Linux a great image base for utilities and even production applications. On top of that it is available as an ARM image. Because of this, many docker images created for the Raspberry Pi are based on the Alpine image.
+
+> **INFO** - **musl libc**
+>
+> musl is a C standard library intended for operating systems based on the Linux kernel, released under the MIT License. musl is lightweight, fast, simple, free, and strives to be correct in the sense of standards-conformance and safety.
+
+Let us spin up a basic alpine image:
+
+```shell
+docker run -it --rm alpine:latest
+```
+
+This will start a container based on the latest alpine image. You will be presented with a shell where you can do your thing. Do take note that changes made in the container are not persisted.
+
+Exiting the shell, will automatically stop the container (because its not running in detached mode) and remove the container (this is because of the `--rm` option).
+
+### A Container with GCC
+
+Another useful example is a docker container that contains all your necessary build tools so you can for example build your C++ from a container, without the need to install all the required tools.
+
+Fire up a GCC container:
+
+```shell
+docker run -it --rm gcc
+```
+
+Now, while it is packed with compilers and linkers and such, there is not even a small text editor on board. So to get small hello world in the container, you can use wget and a github gist from my account:
+
+```shell
+wget https://gist.githubusercontent.com/BioBoost/9322b6d449e8e4751cba110a7febf805/raw/51185fc4bd9671db508c7a42e99fc78f2b94ac58/main.cpp -O main.cpp
+```
+
+Now compile and run it:
+
+```shell
+g++ main.cpp -o hello && ./hello
+```
+
+While this is not a very useful example, you can see that this can easily be used to automated the build process of larger applications, without the need to install all the necessary tools and compilers. Later on we will see how to do exactly this.
