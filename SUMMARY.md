@@ -6,10 +6,12 @@
 
 * [Introduction to Docker](01_introduction/readme.md)
 
+### Containers
+
+* [Containers](02_containers/readme.md)
+
 ----
 
-* [Containers](containers.md)
-* [Installation](installation.md)
 * [Hello World app in PHP](hello-world-app-in-php.md)
 * [Dockerfile](dockerfile.md)
 * [Building containers](building-containers.md)
