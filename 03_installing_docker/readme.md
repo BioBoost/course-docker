@@ -34,9 +34,9 @@ docker --version
 
 ### Running Hello World
 
-DockerHub hosts a hello-world docker image that just outputs a hello world message. This image is intended to test your setup.
+DockerHub hosts a `hello-world` docker image that just outputs a hello world message. This image is intended to test your setup.
 
-Do note that the architecture of the Raspberry is ARM, while most images were primarily build for x86. Luckily, these days the ARM architecture is already widely supported by Docker, so many images exist that can run on the Raspberry Pi.
+Do note that the architecture of the Raspberry is ARM, while most images were primarily build for x86. This basically means that most official images will not run on the Raspberry Pi. However, some organizations exists which host images for the ARM architecture such as `arm32v6`, `arm32v7` and `arm64v8`. You may also come across the `armhf` organization, but this one is deprecated in favor the previously mentioned organizations.
 
 ```shell
 docker run hello-world
@@ -72,6 +72,8 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
+
+Note how the `hello-world` image was actually pulled from the organization `arm32v7`, which hosts a number of docker images for the ARM architecture compatible with the Raspberry Pi 2. If you are using a Raspberry Pi 3, the image should be pulled from the `arm64v8` organization, since the Cortex-A53 is v8 with a 64-bit instruction set.
 
 ## Installing Docker on Windows
 
