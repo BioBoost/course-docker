@@ -229,7 +229,7 @@ Successfully tagged hello-docker:latest
 
 First we can see that Docker will download (pull) the `node:11.11.0-alpine` image from the internet. Next it will execute the commands provided in the `Dockerfile`. The result is a new images called `hello-docker`.
 
-### The `hello-docker` image
+### The hello-docker image
 
 You can list the installed images using the following command:
 
