@@ -6,25 +6,6 @@
 
 
 
-## Running a Container
-
-Running a container from this image is pretty straightforward now.
-
-To run an interactive container that stops when pressing CTRL-C:
-
-```shell
-docker run -it --rm --name hello-from-node -p 3000:3000 hello-docker
-```
-
-<!-- If you create container using `docker run --name hello-from-node -p 3000:3000 hello-docker` and press CTRL-C, you will detach the TTY, but the container will keep running. -->
-
-Note that the port needs to be mapped to a port on the host machine, so it can be accessed from outside of the docker environment.
-
-To run a detached container:
-
-```shell
-docker run -d --name hello-from-node -p 3000:3000 hello-docker
-```
 
 <!-- ## Optimizing the Dockerfile
 
