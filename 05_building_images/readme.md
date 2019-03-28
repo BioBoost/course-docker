@@ -177,3 +177,71 @@ CMD ["npm", "start"]
 ```
 
 Note that the `CMD` instruction requires all arguments to be listed separately.
+
+## Building the image
+
+The `Dockerfile` only describes how an image is created. The next step is to build the image. Building the image will execute the commands in the `Dockerfile`.  Building the image needs to be done with the `docker build` command in the terminal.
+
+The docker build command needs some extra information to be able to build the image correctly.
+
+The first argument is a tag. This can be provided with the `-t` or `--tag` argument followed by the name of the tag. Lets tag our image with the name `hello-docker`. The last argument should be the directory where the `Dockerfile` is located. In our case this is the current directory and can be notated with a dot `.`.
+
+```shell
+docker build -t hello-docker .
+```
+
+If all goes well, the output should be similar to:
+
+```shell
+Sending build context to Docker daemon  2.003MB
+Step 1/6 : FROM node:11.11.0-alpine
+11.11.0-alpine: Pulling from library/node
+8e402f1a9c57: Pull complete
+5e2195587d10: Pull complete
+6f595b2fc66d: Pull complete
+Digest: sha256:6da4878fc63b98ef5fde771b1f05fec9c796e49d249816fe8d544f336ae89d80
+Status: Downloaded newer image for node:11.11.0-alpine
+ ---> a13f3a3ed57f
+Step 2/6 : WORKDIR /app
+ ---> Running in 6fe448759b36
+Removing intermediate container 6fe448759b36
+ ---> f5e47465ac6f
+Step 3/6 : COPY . .
+ ---> 7898fbd309fa
+Step 4/6 : RUN npm install
+ ---> Running in dd584dc9f9c9
+audited 121 packages in 1.44s
+found 0 vulnerabilities
+
+Removing intermediate container dd584dc9f9c9
+ ---> a5119d82476c
+Step 5/6 : EXPOSE 3000
+ ---> Running in fe4accfe9097
+Removing intermediate container fe4accfe9097
+ ---> 9b4c6e3d9fa0
+Step 6/6 : CMD ["npm", "start"]
+ ---> Running in 6af090ec06d4
+Removing intermediate container 6af090ec06d4
+ ---> 4bc117519d32
+Successfully built 4bc117519d32
+Successfully tagged hello-docker:latest
+```
+
+First we can see that Docker will download (pull) the `node:11.11.0-alpine` image from the internet. Next it will execute the commands provided in the `Dockerfile`. The result is a new images called `hello-docker`.
+
+### The `hello-docker` image
+
+You can list the installed images using the following command:
+
+```shell
+docker images
+```
+
+This command will list all installed images on the computer. The `hello-docker` image should be visible in that list.
+
+```shell
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-docker        latest              76b45fcd8c1e        2 minutes ago       77.5MB
+```
+
+You have now created your own custom Docker image.
