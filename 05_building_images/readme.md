@@ -265,3 +265,9 @@ To run a detached container:
 ```shell
 docker run -d --name hello-from-node -p 3000:3000 hello-docker
 ```
+
+<!-- ## Optimizing the Dockerfile
+
+Note that the order of the instructions does play a significant role when creating a `Dockerfile`. During the process of building an image Docker steps through the instructions in your `Dockerfile `executing each in the order specified. As each instruction is examined, Docker looks for an previous generated intermediate image in its cache that it can reuse, rather than creating a new \(duplicate\) image. This means that your build stage layers \(created by most `Dockerfile `instructions\) should be ordered from the less frequently changed to the more frequently changed allowing maximum use of cached images, and speeding up building times immensely. -->
+
+<!-- So we should refactor the dockerfile a bit to optimize it. -->
