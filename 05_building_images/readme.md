@@ -77,3 +77,103 @@ The node image can be found at [https://hub.docker.com/_/node](https://hub.docke
 > **INFO** - **TestDrive the Base Image**
 >
 > You can always test-drive the base image by issueing the command `docker run -it --rm node:11.11.0-alpine sh`, which would spawn a shell. You can check the node version using `node --version` or you can test a simple script. Starting a container with the command `docker run -it --rm node:11.11.0-alpine` would allow you to just enter javascript code.
+
+## The Dockerfile
+
+A `Dockerfile` is human readable text file with a list of steps that describe how to build the image, such as
+
+* configure the system
+* copy the application files
+* install the required dependencies
+* set the working directory
+* running commands in the container
+* setting environment variables
+* exposing ports in the container
+
+Now that the base image is determined, it's time to start building the `Dockerfile`.
+
+### FROM
+
+Add the base image to the Dockerfile using the `FROM` keyword, followed by the name of the image and the tag we would like to start from.
+
+```dockerfile
+# The base image to start from
+FROM node:11.11.0-alpine
+```
+
+Comments can be added using hashtags `#`.
+
+Now we have an Alpine Linux image with NodeJS installed.
+
+### WORKDIR
+
+Next we can set a default application directory using the `WORKDIR` instruction followed by a path. It sets the **working directory** for instructions that follow. If the directory does not exist yet, it will be created.
+
+```dockerfile
+# Setup a working directory for our app
+WORKDIR /app
+```
+
+### COPY
+
+At this point we are ready to copy all necessary application files into the docker image.
+
+This can be achieved with the `COPY` keyword. The keyword accepts two arguments. The source of the files on our computer, and the destination in the Docker image. The simplest option here would be to copy all files using the instruction shown below:
+
+```dockerfile
+# Copy the application files
+COPY . .
+```
+
+The source is the current directory `.` and the destination is the current directory `.` inside the image. This is the `WORKDIR`.
+
+There are however some caveats here. Certain files and directories don't need to be added to our image. Some examples are the `.git` directory and the `node_modules` directory (this one needs to be downloaded using the `npm install` command instead).
+
+To make this process easier, docker supports a `.dockerignore` file which can be added to the project. The files and directories listed in this file are ignore for certain instructions.
+
+Add a `.dockerignore` file to your project with the following content:
+
+```text
+node_modules/
+.git/
+.gitignore
+Dockerfile
+.dockerignore
+```
+
+### RUN
+
+The `RUN` instruction allows us to execute instructions in a shell. This is for example used to install applications, libraries or other dependencies. Each `RUN` instruction will execute any commands in a new layer on top of the current image and commit the results
+
+So the `RUN` instruction can be used to instruct `npm` to install or dependencies.
+
+```dockerfile
+# Install the node modules
+RUN npm install
+```
+
+### EXPOSE
+
+The goal of docker is to isolate software as much as possible. This means that TCP/IP traffic is unable to get in or out of the container. This can be solved by `EXPOSE`ing a TCP or UDP port. This will open up the port on the container, making communication with the outside world and vice versa possible.
+
+Our node application runs on port `3000` to serve HTTP traffic. This means that we need to open up this port in the container. This can be done with the following command:
+
+```dockerfile
+# Expose port 3000 from node
+EXPOSE 3000
+```
+
+If a protocol different from TCP is used, you can specify the protocol following the format `EXPOSE <port>/<udp,tcp>`. If no protocol is specified, than it **defaults to tcp**.
+
+Do note that the `EXPOSE` instruction does not actually publish the port - this needs to be done when running the container.
+
+### CMD
+
+Last but not least we must tell docker what process to start for our container. This can be achieved using the `CMD` instruction. It specifies the application or **executable process that needs to be run** in the container when started. Do note that only a single `CMD` instruction can be specified within a Dockerfile.
+
+```dockerfile
+# The final command that starts the app
+CMD ["npm", "start"]
+```
+
+Note that the `CMD` instruction requires all arguments to be listed separately.
