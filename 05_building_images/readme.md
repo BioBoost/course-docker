@@ -178,6 +178,30 @@ CMD ["npm", "start"]
 
 Note that the `CMD` instruction requires all arguments to be listed separately.
 
+### Final Result
+
+The final result should then be:
+
+```dockerfile
+# The base image to start from
+FROM node:11.11.0-alpine
+
+# Setup a working directory for our app
+WORKDIR /app
+
+# Copy the application files
+COPY . .
+
+# Install the node modules
+RUN npm install
+
+# Expose port 3000 from node
+EXPOSE 3000
+
+# The final command that starts the app
+CMD ["npm", "start"]
+```
+
 ## Building the image
 
 The `Dockerfile` only describes how an image is created. The next step is to build the image. Building the image will execute the commands in the `Dockerfile`.  Building the image needs to be done with the `docker build` command in the terminal.
@@ -229,7 +253,7 @@ Successfully tagged hello-docker:latest
 
 First we can see that Docker will download (pull) the `node:11.11.0-alpine` image from the internet. Next it will execute the commands provided in the `Dockerfile`. The result is a new images called `hello-docker`.
 
-### The `hello-docker` image
+### The hello-docker image
 
 You can list the installed images using the following command:
 
